@@ -1,0 +1,99 @@
+﻿classes:
+
+app.motionalarm.configuration:
+	public static class Logger
+	public class Log
+	public class PasswordPreferences
+		+ string password {get;set;}
+		+ byte attemptsAllowed {get;set;}
+		+ int countDown {get;set;}
+		+ static PasswordPreferences default {get;};
+	public class EmailPreferences
+		+ List<string> addresses {get;set;}
+		+ string subjectLine {get;set;}
+		+ string message {get;set;}
+		+ List<string> attachmentPaths {get;set;}
+		+ static EmailPreferences default{get;}
+	public class VideoStreamingPreferences
+	public class ScanningPreferences
+		+ float bitmapDifferenceTolerance {get;set;}
+		+ int startScanningWaitTimeSeconds {get;set;}
+		+ int intrusionConfirmationWaitTime {get;set;}
+		+ string intrudersName {get;set;}
+		+ string message {get;set;}
+		+ static ScanningPreferences default{get;}
+app.motionalarm.scanning
+	public class Scanner
+		+ initialize()
+		+ start()
+		+ stop()
+		+ reset()
+		+ ScannerState currentState
+		+ event onThresholdBroken(ThresholdBrokenEventArgs e)
+		+ event onIntrusionDetected(IntrusionEventArgs e)
+		+ float currentThreshold {get;}
+		- float _currentThreshold;
+		+ float maxThreshold {get;}
+		- float _maxThreshold;
+		- ScanningPreferences _preferences;	
+	public enum ScannerState:
+		> scanning
+		> stopped
+		> ready
+		> error
+	public class ThresholdBrokenEventArgs:
+		+ DateTime timeOccured { get;set;}
+		+ Bitmap imageFrame {get;set;}
+		+ float maxThreshold {get;set;}
+		+ float currentThreshold {get;set;}
+	public class IntrusionEventArgs:
+		+ dateTime timeOccured {get;set;}
+		+ Bitmap imageFrame {get;set;}
+		
+app.motionalarm.notification
+	public interface INotifier
+	public class EmailNotifier
+	public class VideoStream
+	
+events:
+
+OnLoaded():
+	
+OnButtonClose_Click():
+
+OnButtonAbout_Click():
+
+OnButtonVideoPreferences_Click():
+
+OnButtonEmailPreferences_Click():
+
+OnButtonSpeechPreferences_Click():
+
+OnCheckBoxLogging_Click():
+
+OnCheckBoxStreaming_Click():
+
+OnButtonStreamConfigure_Click():
+
+OnButtonSetupPassword_Click():
+
+OnButtonScanningStart_Click():
+
+OnButtonScanningStop_Click():
+
+OnButtonScanningReset_Click():
+
+
++ class AppConfiguration:
+	+ static AppConfiguration read(string path);
+	+ void save();
+	+ void refresh();
+	- string _path;
+	- StreamPreferences _streamPrefs;
+	- ScanningPReferences _scanPrefs;
+	- EmailPreferences _emailPrefs;
+	- VideoPreferences _videoPrefs;
+
++ static class Config
+	+ static AppConfiguration current { get { return _current; } }
+	+ static AppConfiguration _current = null;

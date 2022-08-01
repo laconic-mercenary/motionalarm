@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8AFB08CC-9E0C-46D4-8466-71BB7BAF305F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>motionalarm</RootNamespace>
+    <AssemblyName>motionalarm</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>bomb.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge">
+      <HintPath>..\..\..\..\..\Desktop\AForge.NET_Framework-2.1.5\Release\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging">
+      <HintPath>..\..\..\..\..\Desktop\AForge.NET_Framework-2.1.5\Release\AForge.Imaging.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Imaging.Formats">
+      <HintPath>..\..\..\..\..\Desktop\AForge.NET_Framework-2.1.5\Release\AForge.Imaging.Formats.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video">
+      <HintPath>..\..\..\..\..\Desktop\AForge.NET_Framework-2.1.5\Release\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow">
+      <HintPath>..\..\..\..\..\Desktop\AForge.NET_Framework-2.1.5\Release\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Vision">
+      <HintPath>..\..\..\..\..\Desktop\AForge.NET_Framework-2.1.5\Release\AForge.Vision.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\WpfRibbonApplication1\WpfRibbonApplication1\bin\Debug\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="RibbonControlsLibrary, Version=4.0.0.11019, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\WpfRibbonApplication1\WpfRibbonApplication1\bin\Debug\RibbonControlsLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="app\motionalarm\configuration\AppConfiguration.cs" />
+    <Compile Include="app\motionalarm\configuration\Config.cs" />
+    <Compile Include="app\motionalarm\configuration\EmailPreferences.cs" />
+    <Compile Include="app\motionalarm\configuration\PasswordPreferences.cs" />
+    <Compile Include="app\motionalarm\configuration\ScanningPreferences.cs" />
+    <Compile Include="app\motionalarm\configuration\VideoPreferences.cs" />
+    <Compile Include="app\motionalarm\Globals.cs" />
+    <Compile Include="app\motionalarm\notification\Emailer.cs" />
+    <Compile Include="app\motionalarm\logging\Logger.cs" />
+    <Compile Include="app\motionalarm\imaging\Extensions.cs" />
+    <Compile Include="app\motionalarm\notification\INotifier.cs" />
+    <Compile Include="app\motionalarm\reporting\HtmlReport.cs" />
+    <Compile Include="app\motionalarm\reporting\IntrusionReportContents.cs" />
+    <Compile Include="app\motionalarm\reporting\Reporting.cs" />
+    <Compile Include="app\motionalarm\scanning\DetectionState.cs" />
+    <Compile Include="app\motionalarm\scanning\IntrusionEventArgs.cs" />
+    <Compile Include="app\motionalarm\scanning\Scanner.cs" />
+    <Compile Include="app\motionalarm\scanning\ScannerException.cs" />
+    <Compile Include="app\motionalarm\scanning\ScannerState.cs" />
+    <Compile Include="app\motionalarm\scanning\ThresholdBrokenEventArgs.cs" />
+    <Compile Include="app\motionalarm\streaming\FileManipulator.cs" />
+    <Compile Include="app\motionalarm\streaming\sockets\BindEventArgs.cs" />
+    <Compile Include="app\motionalarm\streaming\sockets\ConnectionEventArgs.cs" />
+    <Compile Include="app\motionalarm\streaming\sockets\IOPort.cs" />
+    <Compile Include="app\motionalarm\streaming\sockets\ReliableSocket.cs" />
+    <Compile Include="app\motionalarm\streaming\sockets\RxEventArgs.cs" />
+    <Compile Include="app\motionalarm\streaming\sockets\RxSocketEventArgs.cs" />
+    <Compile Include="app\motionalarm\streaming\sockets\SocketBindingEventArgs.cs" />
+    <Compile Include="app\motionalarm\streaming\sockets\TxEventArgs.cs" />
+    <Compile Include="app\motionalarm\streaming\sockets\TxSocketEventArgs.cs" />
+    <Compile Include="app\motionalarm\streaming\StreamManager.cs" />
+    <Compile Include="app\motionalarm\streaming\StreamPreferences.cs" />
+    <Compile Include="InputWindow.xaml.cs">
+      <DependentUpon>InputWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LedIndicator.xaml.cs">
+      <DependentUpon>LedIndicator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LicenseWindow.xaml.cs">
+      <DependentUpon>LicenseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordEntryWindow.xaml.cs">
+      <DependentUpon>PasswordEntryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PasswordPreferencesWindow.xaml.cs">
+      <DependentUpon>PasswordPreferencesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SpeechPreferencesWindow.xaml.cs">
+      <DependentUpon>SpeechPreferencesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DetectionPreferencesWindow.xaml.cs">
+      <DependentUpon>DetectionPreferencesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StreamPreferencesWindow.xaml.cs">
+      <DependentUpon>StreamPreferencesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SystemInformationWindow.xaml.cs">
+      <DependentUpon>SystemInformationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VideoPreferencesWindow.xaml.cs">
+      <DependentUpon>VideoPreferencesWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="EmailPreferencesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InputWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LedIndicator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LicenseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EmailPreferencesWindow.xaml.cs">
+      <DependentUpon>EmailPreferencesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="app\motionalarm\email\GmailSender.cs" />
+    <Compile Include="app\motionalarm\email\GmailSendingService.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="PasswordEntryWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PasswordPreferencesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SpeechPreferencesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DetectionPreferencesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StreamPreferencesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SystemInformationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VideoPreferencesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="doc\classes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="doc\DevLog.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\logo_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\frontier_outpost_new.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\fo_lic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="licenses\eula.txt" />
+    <None Include="licenses\lgplv3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\about.png" />
+    <Resource Include="images\bomb.png" />
+    <Resource Include="images\configure.png" />
+    <Resource Include="images\email.png" />
+    <Resource Include="images\exit.png" />
+    <Resource Include="images\log.png" />
+    <Resource Include="images\manual.png" />
+    <Resource Include="images\password.png" />
+    <Resource Include="images\quick_start.png" />
+    <Resource Include="images\reports.png" />
+    <Resource Include="images\scan_restart.png" />
+    <Resource Include="images\scan_start.png" />
+    <Resource Include="images\scan_stop.png" />
+    <Resource Include="images\stream.png" />
+    <Resource Include="images\stream_config.png" />
+    <Resource Include="images\sys_info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\speech.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\register.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bomb.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\restart_sys.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

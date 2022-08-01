@@ -1,0 +1,24 @@
+﻿<Window x:Class="motionalarm.SystemInformationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="System Information" Height="300" Width="500" Style="{StaticResource windowStyle}"
+        WindowStyle="ToolWindow" Loaded="Window_Loaded" ResizeMode="NoResize">
+    <Grid x:Name="gridRoot">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="110*" />
+            <ColumnDefinition Width="208*" />
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+    </Grid>
+</Window>

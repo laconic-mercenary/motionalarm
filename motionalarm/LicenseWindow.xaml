@@ -1,0 +1,57 @@
+﻿<Window x:Class="motionalarm.LicenseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Company License and Components" Height="550" Width="400" ResizeMode="NoResize" 
+        WindowStyle="ToolWindow" Style="{StaticResource windowStyle}" Loaded="Window_Loaded">
+    <Canvas x:Name="canvasRoot">
+        <!-- header label -->
+        <Label Canvas.Left="12" Canvas.Top="21" Content="Label" Height="71" 
+               Name="labelLicense" Foreground="White" FontSize="15"/>
+        <!-- license text box -->
+        <TextBox Canvas.Left="12" Canvas.Top="101" Height="234" Name="textBoxCompanyLicense" 
+                 Width="366" BorderThickness="2" BorderBrush="White" Background="Transparent"
+                 Opacity="0.7" Text="License Here" Foreground="White" IsReadOnly="True"
+                 VerticalScrollBarVisibility="Visible" TextWrapping="Wrap"/>        
+        <!-- components -->
+        <Label Canvas.Left="12" Canvas.Top="341" Height="28" 
+               Name="labelComponents" Foreground="White">
+            The following components were used.  Licensed under the
+        </Label>
+        <!-- Company Image -->
+        <Image Canvas.Left="251" Canvas.Top="8" Height="80" Name="imageCompanyLogo" 
+               Stretch="Fill" Width="118" Source="images\frontier_outpost_new.png" />
+        <!-- component labels -->
+        <!-- AForge -->
+        <Label Canvas.Left="12" Canvas.Top="383" Height="28" 
+               Name="label1" Foreground="White">
+            AForge Imaging Library
+        </Label>
+        <TextBlock Canvas.Left="54" Canvas.Top="404" Height="23" Name="textBlock1" 
+                   Width="271">
+            <Hyperlink x:Name="hyperlinkAforge" NavigateUri="http://code.google.com/p/aforge/"
+                       RequestNavigate="hyperlinkAforge_RequestNavigate">
+                http://code.google.com/p/aforge/
+            </Hyperlink>
+        </TextBlock>
+        <!-- Icons -->
+        <Label Canvas.Left="12" Canvas.Top="420" Height="28" 
+               Name="label2" Foreground="White">
+            Crystal Clear Icon Set
+        </Label>
+        <TextBlock Canvas.Left="54" Canvas.Top="444">
+            <Hyperlink x:Name="hyperlinkIcons" Foreground="Blue" RequestNavigate="hyperlinkIcons_RequestNavigate"
+                       NavigateUri="http://commons.wikimedia.org/wiki/Crystal_Clear">
+                http://commons.wikimedia.org/wiki/Crystal_Clear
+            </Hyperlink>
+        </TextBlock>
+        <Button Canvas.Left="151" Canvas.Top="476" Content="OK" Height="23" Name="buttonOk" 
+                Width="75" Click="buttonOk_Click" />
+        <TextBlock Canvas.Left="54" Canvas.Top="366" Height="23" Name="textBlock" 
+                   Width="260">
+            <Hyperlink NavigateUri="http://www.gnu.org/copyleft/lesser.html" 
+                       RequestNavigate="Hyperlink_RequestNavigate">
+                GNU General Public License (Lesser) v3
+            </Hyperlink>
+        </TextBlock>
+    </Canvas>
+</Window>

@@ -1,0 +1,114 @@
+﻿TO DO: [13 Jun 2011]
+> get streaming to work
+> icons
+
+TO DO: [15 June 2011]
+> streaming
+> 
+
+TO DO [16 June 2011]
+> verify streaming
+> provide a "test" button in the speech dialog
+> test appearance on Windows XP
+
+TO DO [25 June 2011]
+> was able to get streaming to fully work reliably
+	- it can only use a tcp socket as the packets will not arive in order if using udp.
+> changed icon set to use the GNU LGPL which means I can distribute this as proprietary software: google="lpgl icons"
+> everything now is under the LGPL except the ImageGrabber...
+	- this I will have to write myself somehow.  
+
+[26 June 2011]
+> have completely migrated over to the Lesser GPLv3 with AForge taking over the ImageGrabber
+	as the one to use for capturing web camera images
+> added a VideoPreferences window which allows configuration of the camera resolution
+	and, can now choose the device to stream if there are multiple web cameras attached.
+> bug:	sequence:
+		started scanning regularly
+		stopped the scan
+		configured an ip address to stream
+		enabled the stream (connected)
+		worked
+		stopped
+		changed the resolution
+		started the camera again
+		noted that it was DETECTING, not streaming
+
+[27 June 2011]
+- fixed the bug described yesterday, set the isDetectionEnabled flag dependent on the streamChkBx.IsChecked property
+TO DO:
+> revise the logging messages to emphasize importances (APPLICATION STARTING -> application starting) [X]
+> create some tests
+	- using the camera (stress test the interface)
+		> switch between resolutions while streaming
+		> switch between streaming and detecting a few times
+> do async email sending? [X]
+> think about registration scheme
+
+BUG:
+> since transferring to the AForge web cam... have a problem with 
+	the motion detector saying it is over threshold when you start the scanner.
+	Trying to pause, between starting the web cam, and starting the detector 
+	used to work, but not any more... (FIXED, implemented a TIMER)
+> problem with the application hanging when the scanner is running and we click RESET (FIXED, lock() was causing the timer to wait)
+
+[28 June 2011]
+CODE SWEEP / ANALYSIS:
+	- @scannerInitialize() : get rid of the CapDevice reference and use the Globals...
+	- @scanner_OnImageREady() : get rid of the commented out crap
+	- @buttonScanStart_Click() : get rid of the CapDevice reference and use Globals...
+	- consider adding a Globals.areDevicesConnected() method
+	- @imageGrabber_ImageCaptured() : get rid of the lock on the onCameraImageReady() call
+TO DO:
+	- if someone where to de-compile this, they would see the lambdaTestSender email password, come up with something 
+		creative to prevent them from getting the password directly...
+	- test what happens when you connect 2 devices together
+NOTES:
+	- made the scanner cool down time 5 seconds, this seems to work pretty well.
+
+[ 3 Jul 2011 ]
+Made some changes
+	> got rid of the ImageStreamer
+		- now instead of the user running e-motion having to connect to a remote client (i.e. having to know the 
+		client's ip address, now the user running e-motion simply has to enable it with a password
+		- the client must know the IP Address of the e-motion machine and the port to connect on.  
+		- added class StreamManager to handle this on the e-motion side.
+
+	> TEST CASES:
+		(server = "e-motion", client = "stream receiver")
+
+		Connection Established:
+			Streaming:
+				- press the connect button on the client for the 2nd time, see what happens
+				- stop the scanner
+				- reset the scanner
+				- configure a new stream with a different password (with stream enabled)
+				- configure a new stream with a different password (stream disabled)
+				- close the client, then open it, then attempt to connect again
+				- disable internet / network
+			Non-Streaming:
+				
+		Connecting:
+			- with stream enabled and configured, and the scanner running (images show up in scan pane)
+				connect with client.
+			- with stream enabled and configured, disable the servers stream, then connect with client
+			- attempt to connect with no stream configured
+			- attempt to connect with a stream configured but not enabled
+
+
+[5 Jul 2011]
+Will extend the main window a bit
+	- adding a new group box (streaming):
+		
+[8 Jul 2011]
+Successfully did the following:
+	- implement an AutoReset Event in the StreamManager
+		that makes the sending thread block peacefully until data is ready to be sent
+	- replaced LED with LedIndicator, one that allows for animations on diodes.
+
+[17 Jul 2011]
+Do the following:
+	- AppConfiguration class
+	- Config static class (singleton)
+	- reset the threshold progress bar when resetting or stopping to 0.0
+	- do test cases

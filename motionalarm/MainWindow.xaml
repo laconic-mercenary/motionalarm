@@ -1,0 +1,216 @@
+﻿<Window x:Class="motionalarm.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+        Title="MotionDetector - (C) Frontier Outpost, LLC. 2011" Height="600" Width="800" Loaded="Window_Loaded" 
+        Icon="images\bomb.png" Closing="Window_Closing" WindowStyle="ThreeDBorderWindow" ResizeMode="NoResize"
+        Style="{StaticResource windowStyle}" xmlns:my="clr-namespace:library">
+    <!-- Root Canvas -->
+    <Canvas Name="canvasRoot" >
+        <!-- small line under the collapsed ribbon menu -->
+        <Border BorderBrush="Black" BorderThickness="1" Background="Black" Visibility="Visible" Canvas.Left="0" 
+                Canvas.Top="45" Height="3" Name="border1" Width="670" />
+        
+        <Image Canvas.Left="573" Canvas.Top="53" Height="86" Name="imageCompany" Stretch="Fill" Width="149" 
+               Source="images\frontier_outpost_new.png" />
+        
+        <!-- Video Scan pane -->
+        <GroupBox Canvas.Left="12" Canvas.Top="143" Header="Video Scan" Style="{StaticResource groupBoxStyle}"
+                  Height="406" Name="groupBoxVideo" Width="504">
+            <Canvas Name="canvasVideo">
+                <Label Canvas.Left="71" Canvas.Top="127" Content="NO VIDEO" FontFamily="Arial" Height="99" Name="labelNoVideo" FontSize="64" Opacity="0.30" Style="{StaticResource noVideoLabelStyle}" Width="341" />
+                <!-- Video Scan -->
+                <Image Canvas.Left="6" Width="485" Height="375" Canvas.Top="4" Name="imageVideo" Stretch="Fill"/>
+                
+                <!-- No Image Label -->
+            </Canvas>
+        </GroupBox>
+        <!--  -->
+        <GroupBox Canvas.Left="532" Canvas.Top="296" Header="Statistics" Height="155" Name="groupBoxStatistics" 
+                  Width="230" Style="{StaticResource groupBoxStyle}">
+            <Canvas Name="canvasStats">
+                <!-- Threshold Progress Bar -->
+                <ProgressBar Canvas.Left="6" Canvas.Top="29" Height="24" Name="progressBarThreshold" Width="154" />
+                <Label Canvas.Left="0" Canvas.Top="6" FontWeight="Heavy" 
+                       Content="Threshold:" Foreground="White" Height="28" Name="label1" FontStyle="Normal" />
+                <!-- LED indicator -->
+                <my:LedIndicator Canvas.Left="172" Canvas.Top="25" Width="30" 
+                              Height="30" x:Name="binaryLEDThreshold" />
+                
+                <!-- tolerance exceeded label -->
+                <Label Canvas.Left="1" Style="{StaticResource infoLabelStyle}" Canvas.Top="54" Content="Times Tolerance Exceeded:" 
+                       Height="28" Name="label2" />
+                <Label Canvas.Right="11" Style="{StaticResource infoLabelStyle}" Canvas.Top="54" Content="0" 
+                       Height="28" Name="labelNumToleranceExceeded" />
+
+                <!-- confirmed intrusions -->
+                <Label Canvas.Left="1" Style="{StaticResource infoLabelStyle}" Canvas.Top="74" Content="Confirmed Intrusions:" 
+                       Height="28" Name="label3" />
+                <Label Canvas.Right="11" Canvas.Top="74" Content="0" Style="{StaticResource infoLabelStyle}"
+                       Height="28" Name="labelNumConfirmedIntrusions"  />
+                <!-- label status message -->
+                <Label Canvas.Left="1" Foreground="White" FontStyle="Normal" Canvas.Top="93" Content="--" Height="40" Name="labelStatusMessage" Width="206" />
+                
+            </Canvas>
+        </GroupBox>
+        
+        <!-- Group Box Configuration -->
+        <GroupBox Canvas.Left="532" Canvas.Top="143" Header="Configuration" Height="152"
+                  Name="groupBox2" Width="230" Style="{StaticResource groupBoxStyle}">
+            <Canvas Name="canvasConfiguration">
+                <!-- Configuration Labels -->
+                <!-- label nofication info -->
+                <Label FontSize="12" Height="27" FontStyle="Normal" FontWeight="Bold" Canvas.Left="15" Foreground="White" 
+                       Canvas.Top="-1" Content="Notifications"/>
+                <Label FontSize="12" Height="27" FontStyle="Normal" FontWeight="Normal" Canvas.Left="35" Foreground="White" 
+                       Canvas.Top="14" Content="Default Notifications"  Name="labelNoficationSettings" />
+                <!-- label detection settings -->
+                <Label FontSize="12" Height="27" FontStyle="Normal" FontWeight="Bold" Canvas.Left="15" Foreground="White" 
+                       Canvas.Top="29" Content="Detection Settings" />
+                <Label FontSize="12" Height="27" FontStyle="Normal" FontWeight="Normal" Canvas.Left="35" Foreground="White" 
+                       Canvas.Top="44" Content="Default Detection Settings"  Name="labelDetectionSettings" />
+                <!-- label logging -->
+                <Label FontSize="12" Height="27" FontStyle="Normal" FontWeight="Bold" Canvas.Left="15" Foreground="White" 
+                       Canvas.Top="59" Content="Streams" />
+                <Label FontSize="12" Height="27" FontStyle="Normal" FontWeight="Normal" Canvas.Left="35" Foreground="White" 
+                       Canvas.Top="74" Content="Default Stream Settings"  Name="labelStreamSettings" />
+                <!-- label password -->
+                <Label FontSize="12" Height="27" FontStyle="Normal" FontWeight="Bold" Canvas.Left="15" Foreground="White" 
+                       Canvas.Top="89" Content="Password"/>
+                <Label FontSize="12" Height="27" FontStyle="Normal" FontWeight="Normal" Canvas.Left="35" Foreground="White" 
+                       Canvas.Top="104" Content="Default Password Settings"  Name="labelPasswordSettings" />                
+            </Canvas>
+        </GroupBox>
+        
+        <!-- E-Motion Logo -->
+        <Image Canvas.Left="10" Canvas.Top="60" Height="86" Name="imageHeader" Stretch="Fill" Width="524" Source="images\logo_new.png" />
+        
+        <!-- Ribbon -->
+        <ribbon:Ribbon Name="ribbonMenu" Background="SlateGray" Foreground="Black" BorderBrush="SlateGray" BorderThickness="4" 
+                       Width="790" IsManipulationEnabled="False" IsDropDownOpen="False" IsMinimized="True">
+            
+            <ribbon:Ribbon.ApplicationMenu>
+                <!-- This is the drop down tab at the far left -->
+                <ribbon:RibbonApplicationMenu x:Name="ribbonApplicationMenuDropDown" SmallImageSource="images\configure.png" Width="50">
+                    <!-- Close button in drop down -->
+                    <ribbon:RibbonApplicationMenuItem Header="Close" Width="120" Height="50" x:Name="ribbonDropButtonClose"
+                                                      ImageSource="images\exit.png" Click="buttonClose_Click" />
+                    
+                    <!-- Reports -->
+                    <ribbon:RibbonApplicationMenuItem Header="Reports" x:Name="ribbonDropButtonReports" MouseEnter="ribbonDropButtonReports_MouseEnter"
+                                                      ImageSource="images\reports.png" Click="ribbonDropButtonReports_Click">
+                        <Label x:Name="labelReportsList"/>
+                    </ribbon:RibbonApplicationMenuItem>
+                    
+                </ribbon:RibbonApplicationMenu>
+
+            </ribbon:Ribbon.ApplicationMenu>
+            
+            <!-- Here is where you list the tabs -->
+            
+            <!-- Scanning -->
+            <ribbon:RibbonTab x:Name="ScanningTab" Header="Scanner" Background="Silver" Foreground="Black" BorderBrush="White">
+                <!-- Scanning buttons -->
+                <ribbon:RibbonGroup x:Name="groupScan" Header="Scan">
+                    <!-- start -->
+                    <ribbon:RibbonButton x:Name="buttonScanStart" Label="Start" LargeImageSource="images\scan_start.png" Click="buttonScanStart_Click" />
+                    <!-- stop -->
+                    <ribbon:RibbonButton x:Name="buttonScanSop" Label="Stop" LargeImageSource="images\scan_stop.png" Click="buttonScanStop_Click" />
+                    <!-- reset -->
+                    <ribbon:RibbonButton x:Name="buttonReset" Label="Reset" LargeImageSource="images\scan_restart.png" Click="buttonReset_Click" />
+             
+                    <!-- auto reset and start -->
+                    <ribbon:RibbonCheckBox x:Name="buttonAutoStart" Label="Sentry Mode" LargeImageSource="images\restart_sys.png"/>
+                </ribbon:RibbonGroup>
+            </ribbon:RibbonTab>
+            
+            <!-- Configuration Tab -->
+            <ribbon:RibbonTab x:Name="ConfigTab" Header="Configuration" Background="Silver" Foreground="Black" 
+                              BorderBrush="White">
+                
+                <!-- Detection -->
+                <ribbon:RibbonGroup x:Name="groupConfigurationDetection" Header="Detection">
+                    <!-- Detection Preferences -->
+                    <ribbon:RibbonButton x:Name="buttonConfigDetection" Label="Configure" LargeImageSource="images\bomb.png" Click="buttonConfigDetection_Click" />
+                    <ribbon:RibbonButton x:Name="buttonConfigVideo" Label="Video Settings" LargeImageSource="images\configure.png" Click="buttonConfigVideo_Click"/>
+                </ribbon:RibbonGroup>
+                
+                <!-- Notifications --> 
+                <ribbon:RibbonGroup x:Name="groupConfigurationNotifications" Header="Notifications">
+                    <ribbon:RibbonButton x:Name="buttonConfigNotifications" Label="Email" LargeImageSource="images\email.png" Click="buttonConfigNotifications_Click" />
+                    <ribbon:RibbonButton x:Name="buttonConfigSpeech" Label="Speech" LargeImageSource="images\speech.png" Click="buttonConfigSpeech_Click" />
+                </ribbon:RibbonGroup>               
+                
+                <!-- Streaming -->
+                <ribbon:RibbonGroup x:Name="groupStreaming" Header="Image Streaming">
+                    <ribbon:RibbonCheckBox x:Name="checkBoxStream" Label="Enable" LargeImageSource="images\stream.png" Click="checkBoxStream_Click" />
+                    <ribbon:RibbonButton x:Name="buttonConfigStream" Label="Configure" LargeImageSource="images\stream_config.png" Click="buttonConfigStream_Click" />
+                </ribbon:RibbonGroup>
+                
+                <!-- Logging -->
+                <ribbon:RibbonGroup x:Name="groupConfigurationLogging" Header="Logs">
+                    <ribbon:RibbonCheckBox x:Name="buttonConfigLogging" IsChecked="True" Label="Logging" LargeImageSource="images\log.png" Click="buttonConfigLogging_Click" />
+                </ribbon:RibbonGroup>
+                
+                <!-- Password -->
+                <ribbon:RibbonGroup x:Name="groupPassword" Header="Passwords">
+                    <ribbon:RibbonButton x:Name="buttonConfigPassword" Label="Setup Password" LargeImageSource="images\password.png" Click="buttonConfigPassword_Click" />
+                </ribbon:RibbonGroup>
+                
+            </ribbon:RibbonTab>
+
+            <!-- Help -->
+            <ribbon:RibbonTab x:Name="HelpTab" Header="Help">
+
+                <ribbon:RibbonGroup x:Name="groupDocumentation" Header="Documentation">
+                    <!-- Documentation button -->
+                    <ribbon:RibbonButton x:Name="buttonDocumentation" Label="Operating Manual" LargeImageSource="images\manual.png" Click="buttonDocOperatingManual_Click" />
+                    <!-- Quick Start -->
+                    <ribbon:RibbonButton x:Name="buttonQuickStart" Label="Quick Start Guide" LargeImageSource="images\quick_start.png" Click="buttonQuickStart_Click"/>
+                </ribbon:RibbonGroup>
+
+                <ribbon:RibbonGroup x:Name="groupApplication" Header="Licensing">
+                    <!-- License button -->
+                    <ribbon:RibbonButton x:Name="buttonLicense" Label="Register" LargeImageSource="images\register.png" Click="buttonLicense_Click" />
+                    <!-- Company License -->
+                    <ribbon:RibbonButton x:Name="buttonCompanyLicense" Label="Company License" LargeImageSource="images\fo_lic.png" Click="buttonCompanyLicense_Click"/>
+                </ribbon:RibbonGroup>
+
+                <ribbon:RibbonGroup x:Name="groupSystem" Header="Misc.">
+                    <!-- System Info button -->
+                    <ribbon:RibbonButton x:Name="buttonSystemInfo" Label="System Information" LargeImageSource="images\sys_info.png" Click="buttonSystemInfo_Click" />
+                    <!-- About button -->
+                    <ribbon:RibbonButton x:Name="buttonAbout" Label="About" LargeImageSource="images\about.png" Click="buttonAbout_Click"/>
+                </ribbon:RibbonGroup>
+
+                
+            </ribbon:RibbonTab>
+
+        </ribbon:Ribbon>
+        
+        <!-- Group Box Streaming -->
+        <GroupBox Canvas.Left="534" Canvas.Top="457" Header="Streaming" Height="92" Name="groupBoxStreaming" Width="228"
+                  Style="{StaticResource groupBoxStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="118"/>
+                    <ColumnDefinition Width="98*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <!--  -->
+                <Label x:Name="labelStreamCountHeader" Style="{StaticResource infoLabelStyle}" Content="Current Streams: " Grid.ColumnSpan="2" />
+                <Label x:Name="labelStreamCount" Style="{StaticResource infoLabelStyle}" Grid.Column="1" Content="0" />
+                <!--  -->
+                <Label x:Name="labelStreamStatusHeader" Grid.Row="1" Style="{StaticResource infoLabelStyle}" Content="Service Status: " Grid.ColumnSpan="2"/>
+                <Label x:Name="labelStreamStatus" Grid.Row="1" Style="{StaticResource infoLabelStyle}" Grid.Column="1"/>
+            </Grid>
+        </GroupBox>
+        <Grid Canvas.Left="538" Canvas.Top="466" />
+        <!-- Decorative underborder for the bottom of the ribbon -->
+        <!-- Image Header -->
+    </Canvas>
+</Window>

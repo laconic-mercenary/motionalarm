@@ -1,0 +1,35 @@
+EULA v1.0 (2011)
+
+This license and the terms contained in it represent a legal agreement between you and COMPANY.  This software is licensed to you if you accept the terms contained in this agreement.  Please read this agreement carefully.
+
+IF YOU DO NOT ACCEPT ALL OF THE TERMS CONTAINED IN THIS AGREEMENT, DO NOT USE THE SOFTWARE.
+
+In this agreement, software refers to the following (but is not limited to):
+	1) machine code / executable instructions
+	2) documentation - user manuals and guides
+	3) copies (partial or complete) of this software program.
+	4) upgrades to this software (unless a new license is distributed with the upgrade)
+
+This software is property of COMPANY.  This software is licensed, not sold.  You do not own or have any intellectual property rights with this software.
+
+I.)  LICENSE
+- You may install this software on an unlimited number of machines provided that the license key is not distributed and you ensure a copy of this agreement is contained with it.
+- You may use this software if you obtained a license key from COMPANY.  1 license key will allow the use of 1 instance of this software to be used on 1 machine.  
+- All users that use the software after installation are also bound to the terms contained in this agreement.
+- You may not modify, copy, distribute, reverse engineer (assemble or compile), create any derivative works of, or redistribute the software except as allowed by law or without approval, in writing, by COMPANY.
+- You may not use this software in a way that does not fully comply with all laws specified in the jurisdiction where you use the software.
+- You may not charge fees for copies of and distributions of the software.
+- Use of the software may continue as long as you comply with the terms contained in this agreement.
+- COMPANY may terminate this agreement if you fail to adhere to the terms contained in it.
+- Upon termination of this agreement, you agree to destroy all copies of the software governed by this agreement.
+
+II.) WARRANTY
+- COMPANY disclaims any warranty of any kind for the software, to the maximum extent allowed by law.
+- The software is provided "as is" and has no warranty of any kind, either express or implied.  
+- Some images and libraries the software uses are licensed under the Lesser GNU Public License v3.0, those libraries are completely independent of this agreement and have no affiliation with COMPANY.  These will be listed in the software, generally under the HELP section.
+
+III.) LIABILITY
+- COMPANY, its affiliates will not be liable for any damages of any kind that arise from the use of or the inability to use the software.
+
+IV.) JURISDICTION
+- This agreement will be governed by the laws of the United States of America, and the state of Nebraska.  The location of any judicial proceedings relating to this agreement will be held in the state courts of Lancaster County.
